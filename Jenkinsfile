@@ -1,26 +1,25 @@
 pipeline {
     agent any
      environment {
-        RENDER_URL = "https://stackoverflow.com/"
+        RENDER_URL = "https://gallery-ew2r.onrender.com/?
      }
     tools {
         // Using NodeJS plugin to manage Node.js and npm
-        nodejs 'NodeJS_20' // Assuming you've configured NodeJS 20 as 'NodeJS_20' in Jenkins
+        nodejs 'NodeJS_18' // Assuming you've configured NodeJS 18 as 'NodeJS_18' in Jenkins
         git 'Default'
     }
 
  stages {
         stage('Clone the Repo') {
            steps {
-               git 'https://github.com/geekydee/gallery'
-           }
+        	checkout scm
+	   }
         }
         stage('Install Tools') {
             steps {
                 script {
                 // Install Node.js dependencies
                 sh 'npm install'
-                sh 'npm install express body-parser mongoose'
                 }
             }
         }
@@ -36,17 +35,7 @@ pipeline {
             }
         stage ('Build'){
             steps{
-                sh 'echo Build the App on Heroku'
-            }
-        }
-        stage('Test the App') {
-            when {
-                expression {
-                    return env.BRANCH_NAME == 'test'
-                }
-            }
-            steps {
-               echo 'test failed/passed'
+                sh 'echo Deploy the App to Render'
             }
         }
         stage ('Deploy to Heroku'){
