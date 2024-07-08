@@ -4,11 +4,10 @@ pipeline {
         RENDER_URL = "https://gallery-ew2r.onrender.com/?
      }
     tools {
-        // Using NodeJS plugin to manage Node.js and npm
+        // Using NodeJS plugin to manage Node.js
         nodejs 'NodeJS_18' // Assuming you've configured NodeJS 18 as 'NodeJS_18' in Jenkins
         git 'Default'
     }
-
  stages {
         stage('Clone the Repo') {
            steps {
