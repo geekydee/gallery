@@ -29,7 +29,7 @@ pipeline {
         }
         stage('start server') {
             steps {
-                sh 'node server.js'
+                sh 'nohup node server.js &'
                 }
             }
         stage ('Build') {
