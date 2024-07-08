@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-        RENDER_URL = "https://gallery-ew2r.onrender.com/?
+        RENDER_URL = "https://gallery-ew2r.onrender.com/?"
      }
     tools {
         // Using NodeJS plugin to manage Node.js
@@ -12,7 +12,7 @@ pipeline {
         stage('Clone the Repo') {
            steps {
         	checkout scm
-	   }
+	    }
         }
         stage('Install Tools') {
             steps {
@@ -32,7 +32,7 @@ pipeline {
                 sh 'node server.js'
                 }
             }
-        stage ('Build'){
+        stage ('Build') {
             steps{
                 sh 'echo Deploy the App to Render'
             }
