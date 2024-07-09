@@ -11,10 +11,10 @@ pipeline {
  stages {
         stage('Clone the Repo') {
            steps {
-        	checkout scm
+        	git 'https://github.com/geekydee/gallery'
 	    }
         }
-        stage('Install Tools') {
+        stage('Build') {
             steps {
                 script {
                 // Install Node.js dependencies
@@ -32,16 +32,16 @@ pipeline {
                 sh 'nohup node server.js &'
                 }
             }
-        stage ('Build') {
+        stage ('Deploy') {
             steps{
                 sh 'echo Deploy the App to Render'
             }
         }
-        stage ('Deploy to Heroku'){
-            steps{
-                sh 'echo //Deploy the App'
-            }
-        }
+        //stage ('Deploy to Heroku'){
+          //  steps{
+            //    sh 'echo Deploy the App'
+            //}
+        //}
         //stage('Notify') {
           //  steps {
           //      slackSend color: 'good', message: "Build #${env.BUILD_NUMBER} has been completed succefully. You can View the WebApp on ${RENDER_URL}"
